@@ -18,7 +18,7 @@ namespace lic
 template<typename T>
 void LuaInterface<T&>::Push(lua_State* pL, T& obj)
 {
-	ScriptWrapper<T>* pData = new (lua_newuserdata(pL, sizeof(ScriptWrapper<T>))) ScriptWrapper<T>();
+	LuaWrapper<T>* pData = new (lua_newuserdata(pL, sizeof(LuaWrapper<T>))) LuaWrapper<T>();
 
 	pData->pObj = &obj;
 	Base::PushMetatable(pL);
@@ -36,7 +36,7 @@ T& LuaInterface<T&>::Get(lua_State* pL, int index, bool validate)
 template<typename T>
 void LuaInterface<const T&>::Push(lua_State* pL, const T& obj)
 {
-	ScriptWrapper<T>* pData = new (lua_newuserdata(pL, sizeof(ScriptWrapper<T>))) ScriptWrapper<T>();
+	LuaWrapper<T>* pData = new (lua_newuserdata(pL, sizeof(LuaWrapper<T>))) LuaWrapper<T>();
 
 	pData->pObj = &obj;
 	Base::PushMetatable(pL);
