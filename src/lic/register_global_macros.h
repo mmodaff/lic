@@ -18,6 +18,14 @@
 #define LIC_REG_GLOBAL_FUNC_VOID_1(name, a1)																\
 	static lic::StringRegistrant s_ ## name ## Register(lic::ProxyFunctionVoid1<a1, name>::Register, #name)
 
+#define LIC_REG_GLOBAL_FUNC_RET_0(name, ret)																\
+	static lic::StringRegistrant s_ ## name ## Register(lic::ProxyFunctionRet0<ret, name>::Register, #name)
+	
+#define LIC_REG_GLOBAL_FUNC_RET_1(name, ret, a1)															\
+	static lic::StringRegistrant s_ ## name ## Register(lic::ProxyFunctionRet1<								\
+		ret, a1, name>::Register, #name)
+
+
 #define LIC_REG_GLOBAL_SINGLETON_FUNC_VOID_0(singleton, name)												\
 	static lic::StringRegistrant s_ ## name ## Register(lic::ProxySingletonFunctionVoid0<					\
 		singleton, singleton::Get, &singleton::name>::Register, #name)
