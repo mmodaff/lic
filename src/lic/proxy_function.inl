@@ -19,8 +19,14 @@ extern "C"
 namespace lic
 {
 
+template <typename T>
+void ProxyFunctionBase<T>::Register(lua_State* pL, const char* pName)
+{
+	lua_register(pL, pName, T::Call);
+}
+
 template <void (*Fn)()>
-int ProxyFunctionVoid(lua_State* pL)
+int ProxyFunctionVoid0<Fn>::Call(lua_State* pL)
 {
 	ValidateNumArgs(pL, 0);
 	Fn();
@@ -28,7 +34,7 @@ int ProxyFunctionVoid(lua_State* pL)
 }
 
 template <typename A1, void(*Fn)(A1)>
-int ProxyFunctionVoid(lua_State* pL)
+int ProxyFunctionVoid1<A1, Fn>::Call(lua_State* pL)
 {
 	ValidateNumArgs(pL, 1);
 	Fn(lic::LuaInterface<A1>::Get(pL, 1, true));
@@ -36,7 +42,7 @@ int ProxyFunctionVoid(lua_State* pL)
 }
 
 template <typename A1, typename A2, void(*Fn)(A1, A2)>
-int ProxyFunctionVoid(lua_State* pL)
+int ProxyFunctionVoid2<A1, A2, Fn>::Call(lua_State* pL)
 {
 	ValidateNumArgs(pL, 2);
 	Fn(LuaInterface<A1>::Get(pL, 1, true), 
@@ -46,7 +52,7 @@ int ProxyFunctionVoid(lua_State* pL)
 }
 
 template <typename A1, typename A2, typename A3, void(*Fn)(A1, A2, A3)>
-int ProxyFunctionVoid(lua_State* pL)
+int ProxyFunctionVoid3<A1, A2, A3, Fn>::Call(lua_State* pL)
 {
 	ValidateNumArgs(pL, 3);
 	Fn(LuaInterface<A1>::Get(pL, 1, true), 
@@ -57,7 +63,7 @@ int ProxyFunctionVoid(lua_State* pL)
 }
 
 template <typename A1, typename A2, typename A3, typename A4, void(*Fn)(A1, A2, A3, A4)>
-int ProxyFunctionVoid(lua_State* pL)
+int ProxyFunctionVoid4<A1, A2, A3, A4, Fn>::Call(lua_State* pL)
 {
 	ValidateNumArgs(pL, 4);
 	Fn(LuaInterface<A1>::Get(pL, 1, true), 
@@ -69,7 +75,7 @@ int ProxyFunctionVoid(lua_State* pL)
 }
 
 template <typename A1, typename A2, typename A3, typename A4, typename A5, void(*Fn)(A1, A2, A3, A4, A5)>
-int ProxyFunctionVoid(lua_State* pL)
+int ProxyFunctionVoid5<A1, A2, A3, A4, A5, Fn>::Call(lua_State* pL)
 {
 	ValidateNumArgs(pL, 5);
 	Fn(LuaInterface<A1>::Get(pL, 1, true), 
@@ -82,7 +88,7 @@ int ProxyFunctionVoid(lua_State* pL)
 }
 
 template <typename Ret, Ret (*Fn)()>
-int ProxyFunctionRet(lua_State* pL)
+int ProxyFunctionRet0<Ret, Fn>::Call(lua_State* pL)
 {
 	ValidateNumArgs(pL, 0);
 	LuaInterface<Ret>::Push(pL, Fn());
@@ -90,7 +96,7 @@ int ProxyFunctionRet(lua_State* pL)
 }
 
 template <typename Ret, typename A1, Ret (*Fn)(A1)>
-int ProxyFunctionRet(lua_State* pL)
+int ProxyFunctionRet1<Ret, A1, Fn>::Call(lua_State* pL)
 {
 	ValidateNumArgs(pL, 1);
 	LuaInterface<Ret>::Push(pL, Fn(
@@ -101,7 +107,7 @@ int ProxyFunctionRet(lua_State* pL)
 
 
 template <typename Ret, typename A1, typename A2, Ret (*Fn)(A1, A2)>
-int ProxyFunctionRet(lua_State* pL)
+int ProxyFunctionRet2<Ret, A1, A2, Fn>::Call(lua_State* pL)
 {
 	ValidateNumArgs(pL, 2);
 	LuaInterface<Ret>::Push(pL, Fn(
@@ -112,7 +118,7 @@ int ProxyFunctionRet(lua_State* pL)
 }
 
 template <typename Ret, typename A1, typename A2, typename A3, Ret (*Fn)(A1, A2, A3)>
-int ProxyFunctionRet(lua_State* pL)
+int ProxyFunctionRet3<Ret, A1, A2, A3, Fn>::Call(lua_State* pL)
 {
 	ValidateNumArgs(pL, 3);
 	LuaInterface<Ret>::Push(pL, Fn(
@@ -124,7 +130,7 @@ int ProxyFunctionRet(lua_State* pL)
 }
 
 template <typename Ret, typename A1, typename A2, typename A3, typename A4, Ret (*Fn)(A1, A2, A3, A4)>
-int ProxyFunctionRet(lua_State* pL)
+int ProxyFunctionRet4<Ret, A1, A2, A3, A4, Fn>::Call(lua_State* pL)
 {
 	ValidateNumArgs(pL, 4);
 	LuaInterface<Ret>::Push(pL, Fn(
@@ -137,7 +143,7 @@ int ProxyFunctionRet(lua_State* pL)
 }
 
 template <typename Ret, typename A1, typename A2, typename A3, typename A4, typename A5, Ret (*Fn)(A1, A2, A3, A4, A5)>
-int ProxyFunctionRet(lua_State* pL)
+int ProxyFunctionRet5<Ret, A1, A2, A3, A4, A5, Fn>::Call(lua_State* pL)
 {
 	ValidateNumArgs(pL, 5);
 	LuaInterface<Ret>::Push(pL, Fn(
