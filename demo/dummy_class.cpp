@@ -22,7 +22,7 @@ DummyClass::~DummyClass()
 
 void DummyClass::SetX(int x)
 {
-	m_x = 0;
+	m_x = x;
 }
 
 int DummyClass::GetX()
@@ -32,7 +32,7 @@ int DummyClass::GetX()
 
 void DummyClass::PrintX()
 {
-	printf("%d\n", m_x);
+	printf("X: %d\n", m_x);
 }
 
 }

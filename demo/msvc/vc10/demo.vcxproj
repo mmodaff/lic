@@ -77,13 +77,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\derived_class.cpp" />
     <ClCompile Include="..\..\dummy_class.cpp" />
     <ClCompile Include="..\..\global_funcs.cpp" />
+    <ClCompile Include="..\..\lic_derived_class.cpp" />
     <ClCompile Include="..\..\lic_dummy_class.cpp" />
     <ClCompile Include="..\..\main.cpp" />
     <ClCompile Include="..\..\lic_global_funcs.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\derived_class.h" />
     <ClInclude Include="..\..\dummy_class.h" />
     <ClInclude Include="..\..\global_funcs.h" />
   </ItemGroup>

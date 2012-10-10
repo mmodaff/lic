@@ -1,5 +1,5 @@
 //
-// lic_global_funcs.cpp - macros to expose DummyClass
+// lic_dummy_class.cpp - macros to expose DummyClass
 // Copyright 2012 Matt Modaff
 //
 // See the LICENSE file for license details
