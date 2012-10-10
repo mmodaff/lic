@@ -76,6 +76,9 @@ int LuaInterfaceBase<T>::Dispatch(lua_State* pL)
 
 		if (!lua_isnil(pL, -1))
 		{
+			lua_pushliteral(pL, "__index");
+			lua_rawget(pL, -2);
+			lua_remove(pL, -2);
 			lua_pushvalue(pL, 1);
 			lua_pushvalue(pL, 2);
 			lua_call(pL, 2, 1);
