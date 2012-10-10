@@ -20,6 +20,7 @@
     <ClInclude Include="..\..\src\lic\lua_interface_reference.h" />
     <ClInclude Include="..\..\src\lic\lua_interface_string.h" />
     <ClInclude Include="..\..\src\lic\lua_wrapper.h" />
+    <ClInclude Include="..\..\src\lic\util.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\lic\lua_interface.inl" />
@@ -31,6 +32,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\lic\lua_interface_number.cpp" />
     <ClCompile Include="..\..\src\lic\lua_interface_string.cpp" />
+    <ClCompile Include="..\..\src\lic\util.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{8E5E36D6-59C9-47FD-BAAD-17992AC4C9B4}</ProjectGuid>
