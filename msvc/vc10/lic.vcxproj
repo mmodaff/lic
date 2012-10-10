@@ -12,6 +12,25 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\lic\lic.h" />
+    <ClInclude Include="..\..\src\lic\lua_interface.h" />
+    <ClInclude Include="..\..\src\lic\lua_interface_base.h" />
+    <ClInclude Include="..\..\src\lic\lua_interface_default.h" />
+    <ClInclude Include="..\..\src\lic\lua_interface_number.h" />
+    <ClInclude Include="..\..\src\lic\lua_interface_pointer.h" />
+    <ClInclude Include="..\..\src\lic\lua_interface_reference.h" />
+    <ClInclude Include="..\..\src\lic\lua_interface_string.h" />
+    <ClInclude Include="..\..\src\lic\lua_wrapper.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\lic\lua_interface.inl" />
+    <None Include="..\..\src\lic\lua_interface_base.inl" />
+    <None Include="..\..\src\lic\lua_interface_default.inl" />
+    <None Include="..\..\src\lic\lua_interface_pointer.inl" />
+    <None Include="..\..\src\lic\lua_interface_reference.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\lic\lua_interface_number.cpp" />
+    <ClCompile Include="..\..\src\lic\lua_interface_string.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{8E5E36D6-59C9-47FD-BAAD-17992AC4C9B4}</ProjectGuid>
@@ -48,6 +67,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>M:\projects\lua-5.1.4\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
