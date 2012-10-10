@@ -20,6 +20,8 @@
     <ClInclude Include="..\..\src\lic\lua_interface_reference.h" />
     <ClInclude Include="..\..\src\lic\lua_interface_string.h" />
     <ClInclude Include="..\..\src\lic\lua_wrapper.h" />
+    <ClInclude Include="..\..\src\lic\proxy_class_ctor.h" />
+    <ClInclude Include="..\..\src\lic\proxy_class_function.h" />
     <ClInclude Include="..\..\src\lic\proxy_function.h" />
     <ClInclude Include="..\..\src\lic\proxy_singleton_function.h" />
     <ClInclude Include="..\..\src\lic\util.h" />
@@ -30,6 +32,8 @@
     <None Include="..\..\src\lic\lua_interface_default.inl" />
     <None Include="..\..\src\lic\lua_interface_pointer.inl" />
     <None Include="..\..\src\lic\lua_interface_reference.inl" />
+    <None Include="..\..\src\lic\proxy_class_ctor.inl" />
+    <None Include="..\..\src\lic\proxy_class_function.inl" />
     <None Include="..\..\src\lic\proxy_function.inl" />
     <None Include="..\..\src\lic\proxy_singleton_function.inl" />
   </ItemGroup>

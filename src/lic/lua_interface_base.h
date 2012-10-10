@@ -33,7 +33,7 @@ public:
 	static LuaWrapper<T>* GetWrapper(lua_State* pL, int index, bool validate);
 	static int GC(lua_State* pL);
 
-	static void RegisterMemberFunc(const char* pName, lua_CFunction pFunc);
+	static void RegisterMemberFunc(lua_State* pL, const char* pName, lua_CFunction pFunc);
 
 protected:
 	

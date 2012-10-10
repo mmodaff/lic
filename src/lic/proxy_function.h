@@ -13,7 +13,7 @@ struct lua_State;
 namespace lic
 {
 
-template <typename T>
+template <typename DerivedClass>
 class ProxyFunctionBase
 {
 public:

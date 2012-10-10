@@ -98,6 +98,12 @@ void LuaInterfaceBase<T>::Validate(lua_State* pL, int index)
 		if(lua_rawequal(pL, -1, -2))
 		{
 			lua_pop(pL, 2);
+
+			if(!GetWrapper(pL, index, false)->pObj)
+			{
+				luaL_error(pL, "Argument is in an invalid state");
+			}
+
 			return;
 		}
 
@@ -134,8 +140,9 @@ int LuaInterfaceBase<T>::GC(lua_State* pL)
 }
 
 template<typename T>
-void LuaInterfaceBase<T>::RegisterMemberFunc(const char* pName, lua_CFunction pFunc)
+void LuaInterfaceBase<T>::RegisterMemberFunc(lua_State* pL, const char* pName, lua_CFunction pFunc)
 {
+	Register(pL);
 	sm_dispatchMap.insert(std::make_pair(std::string(pName), pFunc));
 }
 

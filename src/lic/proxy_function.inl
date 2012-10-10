@@ -19,10 +19,10 @@ extern "C"
 namespace lic
 {
 
-template <typename T>
-void ProxyFunctionBase<T>::Register(lua_State* pL, const char* pName)
+template <typename DerivedClass>
+void ProxyFunctionBase<DerivedClass>::Register(lua_State* pL, const char* pName)
 {
-	lua_register(pL, pName, T::Call);
+	lua_register(pL, pName, DerivedClass::Call);
 }
 
 template <void (*Fn)()>
