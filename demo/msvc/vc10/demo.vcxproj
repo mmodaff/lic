@@ -77,11 +77,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\dummy_class.cpp" />
     <ClCompile Include="..\..\global_funcs.cpp" />
+    <ClCompile Include="..\..\lic_dummy_class.cpp" />
     <ClCompile Include="..\..\main.cpp" />
-    <ClCompile Include="..\..\script_global_funcs.cpp" />
+    <ClCompile Include="..\..\lic_global_funcs.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\dummy_class.h" />
     <ClInclude Include="..\..\global_funcs.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

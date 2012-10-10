@@ -1,5 +1,5 @@
 //
-// script_global_funcs.cpp - macros to expose the funcs in global_funcs.h
+// lic_global_funcs.cpp - macros to expose the funcs in global_funcs.h
 // Copyright 2012 Matt Modaff
 //
 // See the LICENSE file for license details
