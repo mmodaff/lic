@@ -6,3 +6,5 @@
 *.opensdf
 msvc/vc10/Debug
 msvc/vc10/ipch
+obj
+*.a
