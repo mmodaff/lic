@@ -24,6 +24,7 @@
     <ClInclude Include="..\..\src\lic\proxy_class_function.h" />
     <ClInclude Include="..\..\src\lic\proxy_function.h" />
     <ClInclude Include="..\..\src\lic\proxy_singleton_function.h" />
+    <ClInclude Include="..\..\src\lic\register_class_macros.h" />
     <ClInclude Include="..\..\src\lic\register_global_macros.h" />
     <ClInclude Include="..\..\src\lic\registrant.h" />
     <ClInclude Include="..\..\src\lic\string_registrant.h" />
