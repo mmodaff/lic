@@ -9,7 +9,7 @@
 #define LIC_PROXY_CLASS_CTOR_INL
 
 #include "proxy_class_ctor.h"
-#include "proxy_function.h"
+#include "proxy_function.inl"
 #include "lua_interface.h"
 #include "util.h"
 

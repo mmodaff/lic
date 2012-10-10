@@ -20,6 +20,29 @@
 		lic::LuaInterfaceBase<name>::DispatchMap();															\
 	static lic::Registrant s_ ## name ## Reg(lic::LuaInterface<name*>::Register)
 
+#define LIC_REG_DERIVED_CLASS(name, base)																	\
+	template class lic::LuaInterface<name*>;																\
+	template<> int lic::LuaInterfaceBase<name>::sm_regIndex = -1;											\
+	template<> lic::LuaInterfaceBase<name>::DispatchMap lic::LuaInterfaceBase<name>::sm_dispatchMap =		\
+		lic::LuaInterfaceBase<name>::DispatchMap();															\
+	static lic::Registrant s_ ## name ## Reg(lic::LuaInterface<name*>::Register);							\
+	static lic::Registrant s_ ## name ## RegBase(lic::LuaInterface<name*>::RegisterBase<base>)
+
+#define LIC_REG_CLASS_CTOR_0(name)																					\
+	lic::StringRegistrant s_ ## name ## CtorReg(lic::ProxyClassCtor0<name>::Register, #name)
+
+#define LIC_REG_CLASS_CTOR_1(name, a1)																				\
+	lic::StringRegistrant s_ ## name ## CtorReg(lic::ProxyClassCtor1<name, a1>::Register, #name)
+
+#define LIC_REG_CLASS_CTOR_2(name, a1, a2)																			\
+	lic::StringRegistrant s_ ## name ## CtorReg(lic::ProxyClassCtor2<name, a1, a2>::Register, #name)
+
+#define LIC_REG_CLASS_CTOR_3(name, a1, a2, a3)																		\
+	lic::StringRegistrant s_ ## name ## CtorReg(lic::ProxyClassCtor3<name, a1, a2, a3>::Register, #name)
+
+#define LIC_REG_CLASS_CTOR_4(name, a1, a2, a3, a4)																	\
+	lic::StringRegistrant s_ ## name ## CtorReg(lic::ProxyClassCtor4<name, a1, a2, a3, a4>::Register, #name)
+
 #define LIC_REG_CLASS_FUNC_VOID_0(T, name)																					\
 	static lic::StringRegistrant s_ ## T ## name ## Reg(lic::ProxyClassFunctionVoid0<T, &T::name>::Register, #name)
 
