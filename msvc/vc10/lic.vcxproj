@@ -21,6 +21,7 @@
     <ClInclude Include="..\..\src\lic\lua_interface_string.h" />
     <ClInclude Include="..\..\src\lic\lua_wrapper.h" />
     <ClInclude Include="..\..\src\lic\proxy_function.h" />
+    <ClInclude Include="..\..\src\lic\proxy_singleton_function.h" />
     <ClInclude Include="..\..\src\lic\util.h" />
   </ItemGroup>
   <ItemGroup>
@@ -30,6 +31,7 @@
     <None Include="..\..\src\lic\lua_interface_pointer.inl" />
     <None Include="..\..\src\lic\lua_interface_reference.inl" />
     <None Include="..\..\src\lic\proxy_function.inl" />
+    <None Include="..\..\src\lic\proxy_singleton_function.inl" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\lic\lua_interface_number.cpp" />
