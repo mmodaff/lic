@@ -24,6 +24,8 @@
     <ClInclude Include="..\..\src\lic\proxy_class_function.h" />
     <ClInclude Include="..\..\src\lic\proxy_function.h" />
     <ClInclude Include="..\..\src\lic\proxy_singleton_function.h" />
+    <ClInclude Include="..\..\src\lic\registrant.h" />
+    <ClInclude Include="..\..\src\lic\string_registrant.h" />
     <ClInclude Include="..\..\src\lic\util.h" />
   </ItemGroup>
   <ItemGroup>
@@ -40,6 +42,8 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\lic\lua_interface_number.cpp" />
     <ClCompile Include="..\..\src\lic\lua_interface_string.cpp" />
+    <ClCompile Include="..\..\src\lic\registrant.cpp" />
+    <ClCompile Include="..\..\src\lic\string_registrant.cpp" />
     <ClCompile Include="..\..\src\lic\util.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

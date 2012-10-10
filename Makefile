@@ -8,6 +8,8 @@ OUTPUT=lic.a
 
 SOURCES += lua_interface_number.cpp
 SOURCES += lua_interface_string.cpp
+SOURCES += registrant.cpp
+SOURCES += string_registrant.cpp
 SOURCES += util.cpp
 
 HEADERS = $(shell find src -name *.h)

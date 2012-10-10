@@ -8,4 +8,18 @@
 #ifndef LIC_LIC_H
 #define LIC_LIC_H
 
+#include "registrant.h"
+
+struct lua_State;
+
+namespace lic
+{
+
+inline void Register(lua_State* pL)
+{
+	Registrant::CallRegistrants(pL);
+}
+
+}
+
 #endif
