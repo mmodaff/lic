@@ -10,3 +10,5 @@ msvc/vc10/ipch
 obj
 *.a
 *~
+*.bak
+*.exe
