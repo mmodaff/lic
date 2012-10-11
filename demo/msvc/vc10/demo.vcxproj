@@ -10,6 +10,20 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\derived_class.cpp" />
+    <ClCompile Include="..\..\src\dummy_class.cpp" />
+    <ClCompile Include="..\..\src\global_funcs.cpp" />
+    <ClCompile Include="..\..\src\lic_derived_class.cpp" />
+    <ClCompile Include="..\..\src\lic_dummy_class.cpp" />
+    <ClCompile Include="..\..\src\lic_global_funcs.cpp" />
+    <ClCompile Include="..\..\src\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\derived_class.h" />
+    <ClInclude Include="..\..\src\dummy_class.h" />
+    <ClInclude Include="..\..\src\global_funcs.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{C6FC0582-75BC-4EE3-865A-B54316977428}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -76,20 +90,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\derived_class.cpp" />
-    <ClCompile Include="..\..\dummy_class.cpp" />
-    <ClCompile Include="..\..\global_funcs.cpp" />
-    <ClCompile Include="..\..\lic_derived_class.cpp" />
-    <ClCompile Include="..\..\lic_dummy_class.cpp" />
-    <ClCompile Include="..\..\main.cpp" />
-    <ClCompile Include="..\..\lic_global_funcs.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\derived_class.h" />
-    <ClInclude Include="..\..\dummy_class.h" />
-    <ClInclude Include="..\..\global_funcs.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

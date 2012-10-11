@@ -28,6 +28,8 @@ int main()
 	}
 
 	lua_close(pL);
+#ifdef WIN32
 	system("pause");
+#endif
 	return 0;
 }
