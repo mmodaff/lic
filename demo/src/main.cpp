@@ -25,6 +25,7 @@ int main()
 	if (luaL_dofile(pL, "demo.lua"))
 	{
 		printf("%s\n", lua_tostring(pL, -1));
+		printf("Make sure your working directory is the root of the demo folder\n");
 	}
 
 	lua_close(pL);
