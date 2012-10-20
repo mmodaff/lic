@@ -18,6 +18,7 @@ template <> class LuaInterface<const char*>
 {
 public:
 	static void Push(lua_State* pL, const char* obj);
+	static void PushRefIfObj(lua_State* pL, const char*& obj);
 	static const char* Get(lua_State* pL, int index, bool validate);
 };
 

@@ -14,6 +14,7 @@ namespace lic
 {
 
 void ValidateNumArgs(lua_State* pL, int args);
+void ValidateMinArgs(lua_State* pL, int min);
 
 }
 

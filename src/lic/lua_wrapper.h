@@ -15,11 +15,6 @@ template <typename T>
 struct LuaWrapper
 {
 	LuaWrapper() : owns(false) {}
-	~LuaWrapper()
-	{
-		if (owns)
-			delete pObj;
-	}
 
 	T* pObj;
 	bool owns;

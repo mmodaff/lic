@@ -22,6 +22,12 @@ void LuaInterfaceNumberBase<T>::Push(lua_State* pL, T obj)
 	lua_pushnumber(pL, (lua_Number)obj);
 }
 
+template <typename T>
+void LuaInterfaceNumberBase<T>::PushRefIfObj(lua_State* pL, T& obj)
+{
+	lua_pushnumber(pL, (lua_Number)obj);
+}
+
 template<typename T>
 T LuaInterfaceNumberBase<T>::Get(lua_State* pL, int index, bool validate)
 {

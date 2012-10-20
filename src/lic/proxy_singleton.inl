@@ -1,14 +1,14 @@
 //
-// proxy_singleton_function.inl - Implementation of templated lua functions that call out to functions that are part of singletons
+// proxy_singleton.inl - Implementation of templated lua functions that call out to functions that are part of singletons
 // Copyright 2012 Matt Modaff
 //
 // See the LICENSE file for license details
 //
 
-#ifndef LIC_PROXY_SINGLETON_FUNCTION_INL
-#define LIC_PROXY_SINGLETON_FUNCTION_INL
+#ifndef LIC_PROXY_SINGLETON_INL
+#define LIC_PROXY_SINGLETON_INL
 
-#include "proxy_singleton_function.h"
+#include "proxy_singleton.h"
 #include "lua_interface.h"
 #include "util.h"
 
@@ -16,6 +16,13 @@ struct lua_State;
 
 namespace lic
 {
+
+template <typename T, T& (*GetFn)()>
+void RegisterSingletonGlobal(lua_State* pL, const char* pName)
+{
+	LuaInterface<T*>::Push(pL, &GetFn());
+	lua_setglobal(pL, pName);
+}
 
 template <typename T, T& (*GetFn)(), void (T::*Fn)()>
 int ProxySingletonFunctionVoid0<T, GetFn, Fn>::Call(lua_State* pL)

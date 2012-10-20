@@ -21,6 +21,7 @@ public:
 	typedef LuaInterfaceBase<T> Base;
 
 	static void Push(lua_State* pL, T obj);
+	static void PushRefIfObj(lua_State* pL, T& obj);
 	static T Get(lua_State* pL, int index, bool validate);
 };
 

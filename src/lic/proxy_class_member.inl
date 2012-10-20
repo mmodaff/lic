@@ -26,7 +26,7 @@ void ProxyClassMember<T, M, Member>::Register(lua_State* pL, const char* pName)
 template <typename T, typename M, M T::*Member>
 int ProxyClassMember<T, M, Member>::Get(lua_State* pL)
 {
-	LuaInterface<M>::Push(pL, LuaInterface<T*>::Get(pL, 1, true)->*Member);
+	LuaInterface<M>::PushRefIfObj(pL, LuaInterface<T*>::Get(pL, 1, true)->*Member);
 	return 1;
 }
 

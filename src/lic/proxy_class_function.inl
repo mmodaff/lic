@@ -23,6 +23,15 @@ void ProxyClassFunctionBase<DerivedClass>::Register(lua_State* pL, const char* p
 	LuaInterface<typename DerivedClass::ClassType*>::RegisterMemberFunc(pL, pName, DerivedClass::Call);
 }
 
+template <typename T, int (T::*Fn)(lua_State* pL)>
+int ProxyClassFunctionLua<T, Fn>::Call(lua_State* pL)
+{
+	ValidateMinArgs(pL, 1);
+	T* pObj = LuaInterface<T*>::GetPtr(pL, 1, true);
+	lua_remove(pL, 1);
+	return (pObj->*Fn)(pL);
+};
+
 template <typename T, void (T::*Fn)()>
 int ProxyClassFunctionVoid0<T, Fn>::Call(lua_State* pL)
 {

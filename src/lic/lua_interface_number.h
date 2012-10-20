@@ -19,17 +19,20 @@ class LuaInterfaceNumberBase
 {
 public:
 	static void Push(lua_State* pL, T pObj);
+	static void PushRefIfObj(lua_State* pL, T& obj);
 	static T Get(lua_State* pL, int index, bool validate);
 };
 
-template <> class LuaInterface<int> : public LuaInterfaceNumberBase<int> {};
-template <> class LuaInterface<unsigned int> : public LuaInterfaceNumberBase<unsigned int> {};
 template <> class LuaInterface<char> : public LuaInterfaceNumberBase<char> {};
 template <> class LuaInterface<unsigned char> : public LuaInterfaceNumberBase<unsigned char> {};
-template <> class LuaInterface<long> : public LuaInterfaceNumberBase<char> {};
-template <> class LuaInterface<unsigned long> : public LuaInterfaceNumberBase<unsigned char> {};
-template <> class LuaInterface<long long> : public LuaInterfaceNumberBase<char> {};
-template <> class LuaInterface<unsigned long long> : public LuaInterfaceNumberBase<unsigned char> {};
+template <> class LuaInterface<short> : public LuaInterfaceNumberBase<short> {};
+template <> class LuaInterface<unsigned short> : public LuaInterfaceNumberBase<unsigned short> {};
+template <> class LuaInterface<int> : public LuaInterfaceNumberBase<int> {};
+template <> class LuaInterface<unsigned int> : public LuaInterfaceNumberBase<unsigned int> {};
+template <> class LuaInterface<long> : public LuaInterfaceNumberBase<long> {};
+template <> class LuaInterface<unsigned long> : public LuaInterfaceNumberBase<unsigned long> {};
+template <> class LuaInterface<long long> : public LuaInterfaceNumberBase<long long> {};
+template <> class LuaInterface<unsigned long long> : public LuaInterfaceNumberBase<unsigned long long> {};
 template <> class LuaInterface<float> : public LuaInterfaceNumberBase<float> {};
 template <> class LuaInterface<double> : public LuaInterfaceNumberBase<double> {};
 

@@ -48,6 +48,9 @@
 #define LIC_REG_CLASS_CTOR_4(name, a1, a2, a3, a4)																	\
 	lic::StringRegistrant s_ ## name ## CtorReg(lic::ProxyClassCtor4<name, a1, a2, a3, a4>::Register, #name)
 
+#define LIC_REG_CLASS_FUNC_LUA(T, name)																						\
+	static lic::StringRegistrant s_ ## T ## name ## Reg(lic::ProxyClassFunctionLua<T, &T::name>::Register, #name)
+
 #define LIC_REG_CLASS_FUNC_VOID_0(T, name)																					\
 	static lic::StringRegistrant s_ ## T ## name ## Reg(lic::ProxyClassFunctionVoid0<T, &T::name>::Register, #name)
 

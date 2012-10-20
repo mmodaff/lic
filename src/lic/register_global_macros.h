@@ -10,7 +10,7 @@
 
 #include "string_registrant.h"
 #include "proxy_function.inl"
-#include "proxy_singleton_function.inl"
+#include "proxy_singleton.inl"
 
 #define LIC_REG_GLOBAL_FUNC_VOID_0(name)																	\
 	static lic::StringRegistrant s_ ## name ## Register(lic::ProxyFunctionVoid0<name>::Register, #name)
@@ -25,6 +25,22 @@
 	static lic::StringRegistrant s_ ## name ## Register(lic::ProxyFunctionRet1<								\
 		ret, a1, name>::Register, #name)
 
+
+#define LIC_REG_GLOBAL_SINGLETON(singleton, get)																	\
+	template<> int lic::LuaInterfaceBase<singleton>::GC(lua_State* pL)												\
+	{																												\
+		LuaWrapper<singleton>* pWrap = (LuaWrapper<singleton>*)lua_touserdata(pL, 1);								\
+		pWrap->~LuaWrapper<singleton>();																			\
+		return 0;																									\
+	}																												\
+	template class lic::LuaInterface<singleton*>;																	\
+	template<> int lic::LuaInterfaceBase<singleton>::sm_regIndex = -1;												\
+	template<> lic::LuaInterfaceBase<singleton>::DispatchMap lic::LuaInterfaceBase<singleton>::sm_dispatchMap =		\
+		lic::LuaInterfaceBase<singleton>::DispatchMap();															\
+	template<> lic::LuaInterfaceBase<singleton>::SetterMap lic::LuaInterfaceBase<singleton>::sm_setterMap =			\
+		lic::LuaInterfaceBase<singleton>::SetterMap();																\
+	static lic::StringRegistrant s_ ## singleton ## Register(lic::RegisterSingletonGlobal<singleton,				\
+		get>, #singleton)
 
 #define LIC_REG_GLOBAL_SINGLETON_FUNC_VOID_0(singleton, name)												\
 	static lic::StringRegistrant s_ ## name ## Register(lic::ProxySingletonFunctionVoid0<					\

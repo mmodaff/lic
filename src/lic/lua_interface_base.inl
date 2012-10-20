@@ -179,6 +179,8 @@ template <typename T>
 int LuaInterfaceBase<T>::GC(lua_State* pL)
 {
 	LuaWrapper<T>* pWrap = (LuaWrapper<T>*)lua_touserdata(pL, 1);
+	if (pWrap->owns)
+		delete pWrap->pObj;
 	pWrap->~LuaWrapper<T>();
 	return 0;
 }

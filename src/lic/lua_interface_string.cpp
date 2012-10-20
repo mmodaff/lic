@@ -21,6 +21,11 @@ void LuaInterface<const char*>::Push(lua_State* pL, const char* obj)
 	lua_pushstring(pL, obj);
 }
 
+void LuaInterface<const char*>::PushRefIfObj(lua_State* pL, const char*& obj)
+{
+	lua_pushstring(pL, obj);
+}
+
 const char* LuaInterface<const char*>::Get(lua_State* pL, int index, bool validate)
 {
 	if (validate)

@@ -29,6 +29,12 @@ void LuaInterface<T>::Push(lua_State* pL, T obj)
 }
 
 template<typename T>
+void LuaInterface<T>::PushRefIfObj(lua_State* pL, T& obj)
+{
+	LuaInterface<T&>::Push(pL, obj);
+}
+
+template<typename T>
 T LuaInterface<T>::Get(lua_State* pL, int index, bool validate)
 {
 	return *(Base::GetPtr(pL, index, validate));

@@ -20,6 +20,14 @@ public:
 	static void Register(lua_State* pL, const char* pName);
 };
 
+template <typename T, int (T::*Fn)(lua_State* pL)>
+class ProxyClassFunctionLua : public ProxyClassFunctionBase<ProxyClassFunctionLua<T, Fn> >
+{
+public:
+	typedef T ClassType;
+	static int Call(lua_State* pL);
+};
+
 template <typename T, void (T::*Fn)()>
 class ProxyClassFunctionVoid0 : public ProxyClassFunctionBase<ProxyClassFunctionVoid0<T, Fn> >
 {
