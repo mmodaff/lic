@@ -20,14 +20,14 @@ namespace lic
 template <typename DerivedClass>
 void ProxyClassFunctionBase<DerivedClass>::Register(lua_State* pL, const char* pName)
 {
-	LuaInterface<typename DerivedClass::ClassType>::RegisterMemberFunc(pL, pName, DerivedClass::Call);
+	LuaInterface<typename DerivedClass::ClassType*>::RegisterMemberFunc(pL, pName, DerivedClass::Call);
 }
 
 template <typename T, void (T::*Fn)()>
 int ProxyClassFunctionVoid0<T, Fn>::Call(lua_State* pL)
 {
 	ValidateNumArgs(pL, 1);
-	(LuaInterface<T>::GetPtr(pL, 1, true)->*Fn)();
+	(LuaInterface<T*>::GetPtr(pL, 1, true)->*Fn)();
 	return 0;
 };
 
@@ -35,8 +35,19 @@ template <typename T, typename A1, void (T::*Fn)(A1)>
 int ProxyClassFunctionVoid1<T, A1, Fn>::Call(lua_State* pL)
 {
 	ValidateNumArgs(pL, 2);
-	(LuaInterface<T>::GetPtr(pL, 1, true)->*Fn)(
+	(LuaInterface<T*>::GetPtr(pL, 1, true)->*Fn)(
 		LuaInterface<A1>::Get(pL, 2, true)
+		);
+	return 0;
+};
+
+template <typename T, typename A1, typename A2, void (T::*Fn)(A1, A2)>
+int ProxyClassFunctionVoid2<T, A1, A2, Fn>::Call(lua_State* pL)
+{
+	ValidateNumArgs(pL, 3);
+	(LuaInterface<T*>::GetPtr(pL, 1, true)->*Fn)(
+		LuaInterface<A1>::Get(pL, 2, true),
+		LuaInterface<A2>::Get(pL, 3, true)
 		);
 	return 0;
 };
@@ -45,7 +56,7 @@ template <typename T, typename Ret, Ret (T::*Fn)()>
 int ProxyClassFunctionRet0<T, Ret, Fn>::Call(lua_State* pL)
 {
 	ValidateNumArgs(pL, 1);
-	LuaInterface<Ret>::Push(pL, (LuaInterface<T>::GetPtr(pL, 1, true)->*Fn)());
+	LuaInterface<Ret>::Push(pL, (LuaInterface<T*>::GetPtr(pL, 1, true)->*Fn)());
 	return 1;
 };
 
@@ -53,7 +64,7 @@ template <typename T, typename Ret, Ret (T::*Fn)() const>
 int ProxyClassConstFunctionRet0<T, Ret, Fn>::Call(lua_State* pL)
 {
 	ValidateNumArgs(pL, 1);
-	LuaInterface<Ret>::Push(pL, (LuaInterface<T>::GetPtr(pL, 1, true)->*Fn)());
+	LuaInterface<Ret>::Push(pL, (LuaInterface<T*>::GetPtr(pL, 1, true)->*Fn)());
 	return 1;
 };
 
