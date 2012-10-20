@@ -33,6 +33,10 @@ void LuaInterfaceBase<T>::Register(lua_State* pL)
 		lua_pushcfunction(pL, GC);
 		lua_rawset(pL, metatable);
 
+		lua_pushliteral(pL, "__newindex");
+		lua_pushcfunction(pL, CallSetter);
+		lua_rawset(pL, metatable);
+
 		sm_regIndex = luaL_ref(pL, LUA_REGISTRYINDEX);
 		if (lua_gettop(pL) != top)
 		{
@@ -66,7 +70,12 @@ int LuaInterfaceBase<T>::Dispatch(lua_State* pL)
 	const char* pFunc = lua_tostring(pL, 2);
 	DispatchMap::iterator it = sm_dispatchMap.find(pFunc);
 	if (it != sm_dispatchMap.end())
-		lua_pushcfunction(pL, it->second);
+	{
+		if (it->second.accessor)
+			it->second.func(pL);
+		else
+			lua_pushcfunction(pL, it->second.func);
+	}
 	else
 	{
 		PushMetatable(pL);
@@ -85,6 +94,37 @@ int LuaInterfaceBase<T>::Dispatch(lua_State* pL)
 		}
 	}
 	return 1;
+}
+
+template <typename T>
+int LuaInterfaceBase<T>::CallSetter(lua_State* pL)
+{
+	const char* pFunc = lua_tostring(pL, 2);
+	SetterMap::iterator it = sm_setterMap.find(pFunc);
+	if (it != sm_setterMap.end())
+	{
+		it->second(pL);
+	}
+	else
+	{
+		PushMetatable(pL);
+		lua_pushliteral(pL, "__base");
+		lua_rawget(pL, -2);
+		lua_remove(pL, -2);
+
+		if (!lua_isnil(pL, -1))
+		{
+			lua_pushliteral(pL, "__newindex");
+			lua_rawget(pL, -2);
+			lua_remove(pL, -2);
+			lua_pushvalue(pL, 1);
+			lua_pushvalue(pL, 2);
+			lua_pushvalue(pL, 3);
+			lua_call(pL, 3, 0);
+		}
+	}
+
+	return 0;
 }
 
 template <typename T>
@@ -147,7 +187,22 @@ template<typename T>
 void LuaInterfaceBase<T>::RegisterMemberFunc(lua_State* pL, const char* pName, lua_CFunction pFunc)
 {
 	Register(pL);
-	sm_dispatchMap.insert(std::make_pair(std::string(pName), pFunc));
+	sm_dispatchMap.insert(std::make_pair(std::string(pName), DispatchItem(false, pFunc)));
 }
+
+template<typename T>
+void LuaInterfaceBase<T>::RegisterMemberAccessor(lua_State* pL, const char* pName, lua_CFunction pFunc)
+{
+	Register(pL);
+	sm_dispatchMap.insert(std::make_pair(std::string(pName), DispatchItem(true, pFunc)));
+}
+
+template<typename T>
+void LuaInterfaceBase<T>::RegisterMemberSetter(lua_State* pL, const char* pName, lua_CFunction pFunc)
+{
+	Register(pL);
+	sm_setterMap.insert(std::make_pair(std::string(pName), pFunc));
+}
+
 
 }

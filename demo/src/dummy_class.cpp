@@ -11,7 +11,7 @@
 namespace demo
 {
 
-DummyClass::DummyClass() : m_x(0)
+DummyClass::DummyClass() :Z(0), m_x(0)
 {
 }
 

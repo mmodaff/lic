@@ -15,3 +15,4 @@ LIC_REG_CLASS_CTOR_0(DummyClass);
 LIC_REG_CLASS_FUNC_VOID_0(DummyClass, PrintX);
 LIC_REG_CLASS_FUNC_VOID_1(DummyClass, SetX, int);
 LIC_REG_CLASS_FUNC_RET_0(DummyClass, GetX, int);
+LIC_REG_CLASS_MEMBER(DummyClass, Z, int);

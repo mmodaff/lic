@@ -34,13 +34,24 @@ public:
 	static int GC(lua_State* pL);
 
 	static void RegisterMemberFunc(lua_State* pL, const char* pName, lua_CFunction pFunc);
+	static void RegisterMemberAccessor(lua_State* pL, const char* pName, lua_CFunction pFunc);
+	static void RegisterMemberSetter(lua_State* pL, const char* pName, lua_CFunction pFunc);
 
 protected:
 	
 	static int Dispatch(lua_State* pL);
-	typedef std::map<std::string, lua_CFunction> DispatchMap;
+	static int CallSetter(lua_State* pL);
+	struct DispatchItem
+	{
+		DispatchItem(bool _accessor, lua_CFunction _func) : accessor(_accessor), func(_func) {}
+		bool accessor;
+		lua_CFunction func;
+	};
+	typedef std::map<std::string, DispatchItem> DispatchMap;
+	typedef std::map<std::string, lua_CFunction> SetterMap;
 
 	static DispatchMap sm_dispatchMap;
+	static SetterMap sm_setterMap;
 	static int sm_regIndex;
 };
 

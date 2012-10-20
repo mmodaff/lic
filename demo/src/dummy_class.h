@@ -22,6 +22,7 @@ public:
 
 	void PrintX();
 
+	int Z;
 private:
 	int m_x;
 };
