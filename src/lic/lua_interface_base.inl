@@ -68,7 +68,7 @@ template <typename T>
 int LuaInterfaceBase<T>::Dispatch(lua_State* pL)
 {
 	const char* pFunc = lua_tostring(pL, 2);
-	DispatchMap::iterator it = sm_dispatchMap.find(pFunc);
+	typename DispatchMap::iterator it = sm_dispatchMap.find(pFunc);
 	if (it != sm_dispatchMap.end())
 	{
 		if (it->second.accessor)
@@ -100,7 +100,7 @@ template <typename T>
 int LuaInterfaceBase<T>::CallSetter(lua_State* pL)
 {
 	const char* pFunc = lua_tostring(pL, 2);
-	SetterMap::iterator it = sm_setterMap.find(pFunc);
+	typename SetterMap::iterator it = sm_setterMap.find(pFunc);
 	if (it != sm_setterMap.end())
 	{
 		it->second(pL);
