@@ -40,7 +40,7 @@ clean:
 
 depend: $(DEPEND)
 
-$(DEPEND):
+$(DEPEND): $(SRC)
 	echo '#' > $(DEPEND)
 	makedepend -- $(CFLAGS) -- $(SRC) -pobj/ -s# -f$(DEPEND)
 
