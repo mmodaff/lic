@@ -3,8 +3,11 @@
 *.user
 *.sdf
 *.opensdf
+*.ncb
+demo/msvc/vc9/Debug
 demo/msvc/vc10/Debug
 demo/msvc/vc10/ipch
+msvc/vc9/Debug
 msvc/vc10/Debug
 msvc/vc10/ipch
 obj
