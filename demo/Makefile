@@ -8,6 +8,7 @@ ODIR=obj
 CDIR=src
 OUTPUT=demo
 DEPEND=depend.mk
+RM = rm -f
 
 SOURCES += derived_class.cpp
 SOURCES += dummy_class.cpp
@@ -41,14 +42,13 @@ $(ODIRS):
 
 .PHONY: clean depend
 
-depend:
-	makedepend -- $(CFLAGS) -- $(SRC) -p$(ODIR)/
+depend: $(DEPEND)
 
 clean:
 	rm -rf $(ODIR)
 	rm -f $(OUTPUT)
 
-$(DEPEND):
+$(DEPEND): $(SRC)
 	echo '#' > $(DEPEND)
 	makedepend -- $(CFLAGS) -- $(SRC) -pobj/ -s# -f$(DEPEND)
 
