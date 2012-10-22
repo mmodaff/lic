@@ -63,6 +63,9 @@
 #define LIC_REG_CLASS_FUNC_RET_0(T, name, ret)																		\
 	static lic::StringRegistrant s_ ## T ## name ## Reg(lic::ProxyClassFunctionRet0<T, ret, &T::name>::Register, #name)
 
+#define LIC_REG_CLASS_FUNC_RET_1(T, name, ret, a1)																			\
+	static lic::StringRegistrant s_ ## T ## name ## Reg(lic::ProxyClassFunctionRet1<T, ret, a1, &T::name>::Register, #name)
+
 #define LIC_REG_CLASS_CONST_FUNC_RET_0(T, name, ret)																		\
 	static lic::StringRegistrant s_ ## T ## name ## Reg(lic::ProxyClassConstFunctionRet0<T, ret, &T::name>::Register, #name)
 

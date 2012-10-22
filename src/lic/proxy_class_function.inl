@@ -69,6 +69,16 @@ int ProxyClassFunctionRet0<T, Ret, Fn>::Call(lua_State* pL)
 	return 1;
 };
 
+template <typename T, typename Ret, typename A1, Ret (T::*Fn)(A1)>
+int ProxyClassFunctionRet1<T, Ret, A1, Fn>::Call(lua_State* pL)
+{
+	ValidateNumArgs(pL, 2);
+	LuaInterface<Ret>::Push(pL, (LuaInterface<T*>::GetPtr(pL, 1, true)->*Fn)(
+		LuaInterface<A1>::Get(pL, 2, true)
+		));
+	return 1;
+};
+
 template <typename T, typename Ret, Ret (T::*Fn)() const>
 int ProxyClassConstFunctionRet0<T, Ret, Fn>::Call(lua_State* pL)
 {
