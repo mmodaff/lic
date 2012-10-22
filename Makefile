@@ -24,7 +24,7 @@ all: $(OUTPUT)
 $(OUTPUT) : $(OBJECTS) Makefile
 	$(LINKER) $@ $(OBJECTS)
 
-$(ODIR)/%.o: %.cpp $(DEPEND)
+$(ODIR)/%.o: %.cpp
 	$(CC) $(CFLAGS) $< -o $@
 
 $(OBJECTS) : | $(ODIRS)
