@@ -27,11 +27,13 @@
 
 
 #define LIC_REG_GLOBAL_SINGLETON(singleton, get)																	\
-	template<> int lic::LuaInterfaceBase<singleton>::GC(lua_State* pL)												\
+	namespace lic {																									\
+	template<> int LuaInterfaceBase<singleton>::GC(lua_State* pL)													\
 	{																												\
 		LuaWrapper<singleton>* pWrap = (LuaWrapper<singleton>*)lua_touserdata(pL, 1);								\
 		pWrap->~LuaWrapper<singleton>();																			\
 		return 0;																									\
+	}																												\
 	}																												\
 	template class lic::LuaInterface<singleton*>;																	\
 	template<> int lic::LuaInterfaceBase<singleton>::sm_regIndex = -1;												\

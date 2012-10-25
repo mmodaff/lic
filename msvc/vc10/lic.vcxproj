@@ -14,6 +14,7 @@
     <ClInclude Include="..\..\src\lic\lic.h" />
     <ClInclude Include="..\..\src\lic\lua_interface.h" />
     <ClInclude Include="..\..\src\lic\lua_interface_base.h" />
+    <ClInclude Include="..\..\src\lic\lua_interface_bool.h" />
     <ClInclude Include="..\..\src\lic\lua_interface_default.h" />
     <ClInclude Include="..\..\src\lic\lua_interface_number.h" />
     <ClInclude Include="..\..\src\lic\lua_interface_pointer.h" />
@@ -44,6 +45,7 @@
     <None Include="..\..\src\lic\proxy_singleton.inl" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\lic\lua_interface_bool.cpp" />
     <ClCompile Include="..\..\src\lic\lua_interface_number.cpp" />
     <ClCompile Include="..\..\src\lic\lua_interface_string.cpp" />
     <ClCompile Include="..\..\src\lic\registrant.cpp" />

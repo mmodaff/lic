@@ -7,6 +7,7 @@ CDIR=src/lic
 OUTPUT=lic.a
 DEPEND=depend.mk
 
+SOURCES += lua_interface_bool.cpp
 SOURCES += lua_interface_number.cpp
 SOURCES += lua_interface_string.cpp
 SOURCES += registrant.cpp

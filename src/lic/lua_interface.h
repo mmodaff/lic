@@ -13,5 +13,6 @@
 #include "lua_interface_reference.h"
 #include "lua_interface_number.h"
 #include "lua_interface_string.h"
+#include "lua_interface_bool.h"
 
 #endif

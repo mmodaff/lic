@@ -68,6 +68,14 @@ public:
 	static int Call(lua_State* pL);
 };
 
+template <typename T, typename Ret, typename A1, typename A2, Ret (T::*Fn)(A1, A2)>
+class ProxyClassFunctionRet2 : public ProxyClassFunctionBase<ProxyClassFunctionRet2<T, Ret, A1, A2, Fn> >
+{
+public:
+	typedef T ClassType;
+	static int Call(lua_State* pL);
+};
+
 template <typename T, typename Ret, Ret (T::*Fn)() const>
 class ProxyClassConstFunctionRet0 : public ProxyClassFunctionBase<ProxyClassConstFunctionRet0 <T, Ret, Fn> >
 {
