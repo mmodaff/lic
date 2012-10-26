@@ -9,6 +9,7 @@ demo/msvc/vc10/Debug
 demo/msvc/vc10/ipch
 msvc/vc9/Debug
 msvc/vc10/Debug
+msvc/vc10/Release
 msvc/vc10/ipch
 obj
 *.a
