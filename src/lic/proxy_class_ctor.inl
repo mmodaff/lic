@@ -18,49 +18,49 @@ struct lua_State;
 namespace lic
 {
 
-template <typename T>
-int ProxyClassCtor0<T>::Call(lua_State* pL)
+template <typename T, bool owns>
+int ProxyClassCtor0<T, owns>::Call(lua_State* pL)
 {
 	ValidateNumArgs(pL, 0);
-	LuaInterface<T*>::Push(pL, new T, true);
+	LuaInterface<T*>::Push(pL, new T, owns);
 	return 1;
 }
 
-template <typename T, typename A1>
-int ProxyClassCtor1<T, A1>::Call(lua_State* pL)
+template <typename T, bool owns, typename A1>
+int ProxyClassCtor1<T, owns, A1>::Call(lua_State* pL)
 {
 	ValidateNumArgs(pL, 1);
 	LuaInterface<T*>::Push(pL, new T(
 		LuaInterface<A1>::Get(pL, 1, true)
-		), true);
+		), owns);
 	return 1;
 }
 
-template <typename T, typename A1, typename A2>
-int ProxyClassCtor2<T, A1, A2>::Call(lua_State* pL)
+template <typename T, bool owns, typename A1, typename A2>
+int ProxyClassCtor2<T, owns, A1, A2>::Call(lua_State* pL)
 {
 	ValidateNumArgs(pL, 2);
 	LuaInterface<T*>::Push(pL, new T(
 		LuaInterface<A1>::Get(pL, 1, true),
 		LuaInterface<A2>::Get(pL, 2, true)
-		), true);
+		), owns);
 	return 1;
 }
 
-template <typename T, typename A1, typename A2, typename A3>
-int ProxyClassCtor3<T, A1, A2, A3>::Call(lua_State* pL)
+template <typename T, bool owns, typename A1, typename A2, typename A3>
+int ProxyClassCtor3<T, owns, A1, A2, A3>::Call(lua_State* pL)
 {
 	ValidateNumArgs(pL, 3);
 	LuaInterface<T*>::Push(pL, new T(
 		LuaInterface<A1>::Get(pL, 1, true),
 		LuaInterface<A2>::Get(pL, 2, true),
 		LuaInterface<A3>::Get(pL, 3, true)
-		), true);
+		), owns);
 	return 1;
 }
 
-template <typename T, typename A1, typename A2, typename A3, typename A4>
-int ProxyClassCtor4<T, A1, A2, A3, A4>::Call(lua_State* pL)
+template <typename T, bool owns, typename A1, typename A2, typename A3, typename A4>
+int ProxyClassCtor4<T, owns, A1, A2, A3, A4>::Call(lua_State* pL)
 {
 	ValidateNumArgs(pL, 4);
 	LuaInterface<T*>::Push(pL, new T(
@@ -68,7 +68,7 @@ int ProxyClassCtor4<T, A1, A2, A3, A4>::Call(lua_State* pL)
 		LuaInterface<A2>::Get(pL, 2, true),
 		LuaInterface<A3>::Get(pL, 3, true),
 		LuaInterface<A4>::Get(pL, 4, true)
-		), true);
+		), owns);
 	return 1;
 }
 

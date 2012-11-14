@@ -33,20 +33,20 @@
 	static lic::Registrant s_ ## name ## Reg(lic::LuaInterface<name*>::Register);							\
 	static lic::Registrant s_ ## name ## RegBase(lic::LuaInterface<name*>::RegisterBase<base>)
 
-#define LIC_REG_CLASS_CTOR_0(name)																					\
-	lic::StringRegistrant s_ ## name ## CtorReg(lic::ProxyClassCtor0<name>::Register, #name)
+#define LIC_REG_CLASS_CTOR_0(name, owns)																			\
+	lic::StringRegistrant s_ ## name ## CtorReg(lic::ProxyClassCtor0<name, owns>::Register, #name)
 
-#define LIC_REG_CLASS_CTOR_1(name, a1)																				\
-	lic::StringRegistrant s_ ## name ## CtorReg(lic::ProxyClassCtor1<name, a1>::Register, #name)
+#define LIC_REG_CLASS_CTOR_1(name, owns, a1)																		\
+	lic::StringRegistrant s_ ## name ## CtorReg(lic::ProxyClassCtor1<name, owns, a1>::Register, #name)
 
-#define LIC_REG_CLASS_CTOR_2(name, a1, a2)																			\
-	lic::StringRegistrant s_ ## name ## CtorReg(lic::ProxyClassCtor2<name, a1, a2>::Register, #name)
+#define LIC_REG_CLASS_CTOR_2(name, owns, a1, a2)																	\
+	lic::StringRegistrant s_ ## name ## CtorReg(lic::ProxyClassCtor2<name, owns, a1, a2>::Register, #name)
 
-#define LIC_REG_CLASS_CTOR_3(name, a1, a2, a3)																		\
-	lic::StringRegistrant s_ ## name ## CtorReg(lic::ProxyClassCtor3<name, a1, a2, a3>::Register, #name)
+#define LIC_REG_CLASS_CTOR_3(name, owns, a1, a2, a3)																\
+	lic::StringRegistrant s_ ## name ## CtorReg(lic::ProxyClassCtor3<name, owns, a1, a2, a3>::Register, #name)
 
-#define LIC_REG_CLASS_CTOR_4(name, a1, a2, a3, a4)																	\
-	lic::StringRegistrant s_ ## name ## CtorReg(lic::ProxyClassCtor4<name, a1, a2, a3, a4>::Register, #name)
+#define LIC_REG_CLASS_CTOR_4(name, owns, a1, a2, a3, a4)															\
+	lic::StringRegistrant s_ ## name ## CtorReg(lic::ProxyClassCtor4<name, owns, a1, a2, a3, a4>::Register, #name)
 
 #define LIC_REG_CLASS_FUNC_LUA(T, name)																						\
 	static lic::StringRegistrant s_ ## T ## name ## Reg(lic::ProxyClassFunctionLua<T, &T::name>::Register, #name)
