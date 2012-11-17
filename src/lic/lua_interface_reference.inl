@@ -38,7 +38,7 @@ void LuaInterface<const T&>::Push(lua_State* pL, const T& obj)
 {
 	LuaWrapper<T>* pData = new (lua_newuserdata(pL, sizeof(LuaWrapper<T>))) LuaWrapper<T>();
 
-	pData->pObj = &obj;
+	pData->pObj = (T*)&obj;
 	Base::PushMetatable(pL);
 	lua_setmetatable(pL, -2);
 }

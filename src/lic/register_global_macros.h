@@ -25,6 +25,9 @@
 	static lic::StringRegistrant s_ ## name ## Register(lic::ProxyFunctionRet1<								\
 		ret, a1, name>::Register, #name)
 
+#define LIC_REG_GLOBAL_FUNC_LUA(name)																		\
+	static lic::StringRegistrant s_ ## name ## Register(lic::ProxyFunctionLua<name>::Register, #name)
+
 
 #define LIC_REG_GLOBAL_SINGLETON(singleton, get)																	\
 	namespace lic {																									\

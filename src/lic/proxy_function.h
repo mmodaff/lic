@@ -104,6 +104,13 @@ public:
 	static int Call(lua_State* pL);
 };
 
+template <int (*Fn)(lua_State*)>
+class ProxyFunctionLua : public ProxyFunctionBase<ProxyFunctionLua<Fn> >
+{
+public:
+	static int Call(lua_State* pL);
+};
+
 }
 
 #endif

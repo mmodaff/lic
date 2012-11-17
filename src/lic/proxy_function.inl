@@ -156,6 +156,12 @@ int ProxyFunctionRet5<Ret, A1, A2, A3, A4, A5, Fn>::Call(lua_State* pL)
 	return 1;
 }
 
+template <int (*Fn)(lua_State*)>
+int ProxyFunctionLua<Fn>::Call(lua_State* pL)
+{
+	return Fn(pL);
+}
+
 }
 
 #endif

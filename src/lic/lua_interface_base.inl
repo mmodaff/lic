@@ -50,6 +50,7 @@ template<typename T>
 template<typename B>
 void LuaInterfaceBase<T>::RegisterBase(lua_State* pL)
 {
+	Register(pL);
 	LuaInterfaceBase<B>::Register(pL);
 	PushMetatable(pL);
 	lua_pushliteral(pL, "__base");
@@ -130,6 +131,11 @@ int LuaInterfaceBase<T>::CallSetter(lua_State* pL)
 template <typename T>
 void LuaInterfaceBase<T>::Validate(lua_State* pL, int index)
 {
+	if (index < 0)
+	{
+		index = lua_gettop(pL) + index + 1;
+	}
+
 	if (lua_type(pL, index) != LUA_TUSERDATA)
 	{
 		luaL_error(pL, "Invalid argument type");
