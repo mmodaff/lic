@@ -8,11 +8,56 @@
 #ifndef LIC_LUA_INTERFACE_H
 #define LIC_LUA_INTERFACE_H
 
-#include "lua_interface_default.h"
-#include "lua_interface_pointer.h"
-#include "lua_interface_reference.h"
-#include "lua_interface_number.h"
-#include "lua_interface_string.h"
-#include "lua_interface_bool.h"
+struct lua_State;
+
+namespace lic
+{
+
+template <typename T>
+class LuaInterface
+{
+public:
+#if 0
+	static void PushRefIfObj(lua_State* pL, T& obj);
+	static void Push(lua_State* pL, T obj);
+	static T Get(lua_State* pL, int arg, bool check = true);
+	static T* GetPtr(lua_State* pL, int arg, bool check);
+#endif
+};
+
+template <typename T>
+class LuaInterface<T*> 
+{
+public:
+	typedef LuaInterface<T> Base;
+
+	static void Push(lua_State* pL, T* pObj, bool owns = false);
+	static T* Get(lua_State* pL, int index, bool validate);
+	static T* GetPtr(lua_State* pL, int index, bool validate);
+};
+
+template <typename T>
+class LuaInterface<T&>
+{
+public:
+	typedef LuaInterface<T> Base;
+
+	static void Push(lua_State* pL, T& obj);
+	static T& Get(lua_State* pL, int index, bool validate);
+	static T* GetPtr(lua_State* pL, int index, bool validate);
+};
+
+template <typename T>
+class LuaInterface<const T&>
+{
+public:
+	typedef LuaInterface<T> Base;
+
+	static void Push(lua_State* pL, const T& obj);
+	static const T& Get(lua_State* pL, int index, bool validate);
+	static const T* GetPtr(lua_State* pL, int index, bool validate);
+};
+
+}
 
 #endif

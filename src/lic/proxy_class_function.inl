@@ -20,7 +20,7 @@ namespace lic
 template <typename DerivedClass>
 void ProxyClassFunctionBase<DerivedClass>::Register(lua_State* pL, const char* pName)
 {
-	LuaInterface<typename DerivedClass::ClassType*>::RegisterMemberFunc(pL, pName, DerivedClass::Call);
+	LuaInterface<typename DerivedClass::ClassType>::RegisterMemberFunc(pL, pName, DerivedClass::Call);
 }
 
 template <typename T, int (T::*Fn)(lua_State* pL)>

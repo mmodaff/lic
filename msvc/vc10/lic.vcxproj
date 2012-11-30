@@ -11,14 +11,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\lic\generic_interface.h" />
     <ClInclude Include="..\..\src\lic\lic.h" />
+    <ClInclude Include="..\..\src\lic\common.h" />
     <ClInclude Include="..\..\src\lic\lua_interface.h" />
-    <ClInclude Include="..\..\src\lic\lua_interface_base.h" />
     <ClInclude Include="..\..\src\lic\lua_interface_bool.h" />
-    <ClInclude Include="..\..\src\lic\lua_interface_default.h" />
     <ClInclude Include="..\..\src\lic\lua_interface_number.h" />
-    <ClInclude Include="..\..\src\lic\lua_interface_pointer.h" />
-    <ClInclude Include="..\..\src\lic\lua_interface_reference.h" />
     <ClInclude Include="..\..\src\lic\lua_interface_string.h" />
     <ClInclude Include="..\..\src\lic\lua_wrapper.h" />
     <ClInclude Include="..\..\src\lic\proxy_class_ctor.h" />
@@ -33,11 +31,9 @@
     <ClInclude Include="..\..\src\lic\util.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\src\lic\common.inl" />
+    <None Include="..\..\src\lic\generic_interface.inl" />
     <None Include="..\..\src\lic\lua_interface.inl" />
-    <None Include="..\..\src\lic\lua_interface_base.inl" />
-    <None Include="..\..\src\lic\lua_interface_default.inl" />
-    <None Include="..\..\src\lic\lua_interface_pointer.inl" />
-    <None Include="..\..\src\lic\lua_interface_reference.inl" />
     <None Include="..\..\src\lic\proxy_class_ctor.inl" />
     <None Include="..\..\src\lic\proxy_class_function.inl" />
     <None Include="..\..\src\lic\proxy_class_member.inl" />
@@ -45,6 +41,7 @@
     <None Include="..\..\src\lic\proxy_singleton.inl" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\lic\generic_interface.cpp" />
     <ClCompile Include="..\..\src\lic\lua_interface_bool.cpp" />
     <ClCompile Include="..\..\src\lic\lua_interface_number.cpp" />
     <ClCompile Include="..\..\src\lic\lua_interface_string.cpp" />

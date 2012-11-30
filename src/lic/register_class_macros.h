@@ -15,23 +15,7 @@
 #include "proxy_class_member.inl"
 
 #define LIC_REG_CLASS(name)																					\
-	template class lic::LuaInterface<name*>;																\
-	template<> int lic::LuaInterfaceBase<name>::sm_regIndex = -1;											\
-	template<> lic::LuaInterfaceBase<name>::DispatchMap lic::LuaInterfaceBase<name>::sm_dispatchMap =		\
-		lic::LuaInterfaceBase<name>::DispatchMap();															\
-	template<> lic::LuaInterfaceBase<name>::SetterMap lic::LuaInterfaceBase<name>::sm_setterMap =			\
-		lic::LuaInterfaceBase<name>::SetterMap();															\
-	static lic::Registrant s_ ## name ## Reg(lic::LuaInterface<name*>::Register)
-
-#define LIC_REG_DERIVED_CLASS(name, base)																	\
-	template class lic::LuaInterface<name*>;																\
-	template<> int lic::LuaInterfaceBase<name>::sm_regIndex = -1;											\
-	template<> lic::LuaInterfaceBase<name>::DispatchMap lic::LuaInterfaceBase<name>::sm_dispatchMap =		\
-		lic::LuaInterfaceBase<name>::DispatchMap();															\
-	template<> lic::LuaInterfaceBase<name>::SetterMap lic::LuaInterfaceBase<name>::sm_setterMap =			\
-		lic::LuaInterfaceBase<name>::SetterMap();															\
-	static lic::Registrant s_ ## name ## Reg(lic::LuaInterface<name*>::Register);							\
-	static lic::Registrant s_ ## name ## RegBase(lic::LuaInterface<name*>::RegisterBase<base>)
+	static lic::Registrant s_ ## name ## Reg(lic::LuaInterface<name>::Register)
 
 #define LIC_REG_CLASS_CTOR_0(name, owns)																			\
 	lic::StringRegistrant s_ ## name ## CtorReg(lic::ProxyClassCtor0<name, owns>::Register, #name)
@@ -77,5 +61,8 @@
 
 #define LIC_REG_CLASS_MEMBER(T, name, type)																					\
 	static lic::StringRegistrant s_ ## T ## name ## Reg(lic::ProxyClassMember<T, type, &T::name>::Register, #name)
+
+#define LIC_REG_CLASS_MEMBER_GETTER(T, name, type)																					\
+	static lic::StringRegistrant s_ ## T ## name ## Reg(lic::ProxyClassMemberGetter<T, type, &T::name>::Register, #name)
 
 #endif

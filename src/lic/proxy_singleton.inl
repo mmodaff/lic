@@ -20,6 +20,7 @@ namespace lic
 template <typename T, T& (*GetFn)()>
 void RegisterSingletonGlobal(lua_State* pL, const char* pName)
 {
+	LuaInterface<T>::Register(pL);
 	LuaInterface<T*>::Push(pL, &GetFn());
 	lua_setglobal(pL, pName);
 }

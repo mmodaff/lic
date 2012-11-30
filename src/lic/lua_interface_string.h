@@ -8,11 +8,10 @@
 #ifndef LIC_LUA_INTERFACE_STRING_H
 #define LIC_LUA_INTERFACE_STRING_H
 
-#include "lua_interface_default.h"
+#include "lua_interface.h"
 
 namespace lic
 {
-
 
 template <> class LuaInterface<const char*>
 {

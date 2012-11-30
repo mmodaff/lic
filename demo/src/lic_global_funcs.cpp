@@ -6,6 +6,7 @@
 //
 
 #include "global_funcs.h"
+#include <lic/lua_interface_number.h>
 #include <lic/register_global_macros.h>
 
 using namespace demo;

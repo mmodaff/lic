@@ -30,20 +30,6 @@
 
 
 #define LIC_REG_GLOBAL_SINGLETON(singleton, get)																	\
-	namespace lic {																									\
-	template<> int LuaInterfaceBase<singleton>::GC(lua_State* pL)													\
-	{																												\
-		LuaWrapper<singleton>* pWrap = (LuaWrapper<singleton>*)lua_touserdata(pL, 1);								\
-		pWrap->~LuaWrapper<singleton>();																			\
-		return 0;																									\
-	}																												\
-	}																												\
-	template class lic::LuaInterface<singleton*>;																	\
-	template<> int lic::LuaInterfaceBase<singleton>::sm_regIndex = -1;												\
-	template<> lic::LuaInterfaceBase<singleton>::DispatchMap lic::LuaInterfaceBase<singleton>::sm_dispatchMap =		\
-		lic::LuaInterfaceBase<singleton>::DispatchMap();															\
-	template<> lic::LuaInterfaceBase<singleton>::SetterMap lic::LuaInterfaceBase<singleton>::sm_setterMap =			\
-		lic::LuaInterfaceBase<singleton>::SetterMap();																\
 	static lic::StringRegistrant s_ ## singleton ## Register(lic::RegisterSingletonGlobal<singleton,				\
 		get>, #singleton)
 

@@ -8,6 +8,7 @@
 #ifndef LIC_PROXY_FUNCTION_H
 #define LIC_PROXY_FUNCTION_H
 
+
 struct lua_State;
 
 namespace lic

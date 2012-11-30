@@ -8,7 +8,7 @@
 #ifndef LIC_LUA_INTERFACE_NUMBER_H
 #define LIC_LUA_INTERFACE_NUMBER_H
 
-#include "lua_interface_default.h"
+#include "lua_interface.h"
 
 namespace lic
 {

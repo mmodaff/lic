@@ -14,11 +14,18 @@ namespace lic
 {
 
 template <typename T, typename M, M T::*Member>
-class ProxyClassMember
+class ProxyClassMemberGetter
 {
 public:
 	static void Register(lua_State* pL, const char* pName);
 	static int Get(lua_State* pL);
+};
+
+template <typename T, typename M, M T::*Member>
+class ProxyClassMember : public ProxyClassMemberGetter<T, M, Member>
+{
+public:
+	static void Register(lua_State* pL, const char* pName);
 	static int Set(lua_State* pL);
 };
 
