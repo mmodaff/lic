@@ -29,7 +29,15 @@ public:
 };
 
 template <typename T>
-class GenericGet
+class ValueInterface
+{
+public:
+	static T Get(lua_State* pL, int arg, bool validate);
+	static void Push(lua_State* pL, T obj);
+};
+
+template <typename T>
+class GenericGetPtr
 {
 public:
 	static T* GetPtr(lua_State* pL, int arg, bool check);
@@ -80,6 +88,7 @@ public:
 	static void RegisterMemberFunc(lua_State* pL, const char* pName, lua_CFunction func);
 	static void RegisterMemberAccessor(lua_State* pL, const char* pName, lua_CFunction pFunc);
 	static void RegisterMemberSetter(lua_State* pL, const char* pName, lua_CFunction pFunc);
+	static void RegisterOperator(lua_State* pL, lua_CFunction pFunc, const char* pOp);
 };
 
 template <typename T>
@@ -98,7 +107,7 @@ public:
 template <typename T>
 class GenericInterface :
 	public Base<T>,
-	public GenericGet<T>,
+	public GenericGetPtr<T>,
 	public GenericRegister<T>,
 	public GenericNotDerived,
 	public GenericDispatch<T>,
@@ -109,7 +118,7 @@ class GenericInterface :
 template <typename T, typename B>
 class GenericInterfaceDerived :
 	public Base<T>,
-	public GenericGet<T>,
+	public GenericGetPtr<T>,
 	public GenericRegister<T>,
 	public GenericDerived<B>,
 	public GenericDispatch<T>,
@@ -120,7 +129,7 @@ class GenericInterfaceDerived :
 template <typename T>
 class GenericInterfaceSingleton :
 	public Base<T>,
-	public GenericGet<T>,
+	public GenericGetPtr<T>,
 	public GenericRegister<T>,
 	public GenericNotDerived,
 	public GenericDispatch<T>,

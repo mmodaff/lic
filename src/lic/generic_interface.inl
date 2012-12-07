@@ -50,8 +50,22 @@ void Base<T>::PushRefIfObj(lua_State* pL, T& obj)
 	CreateWrapperOnTop(pL)->pObj = &obj;
 }
 
+template <typename T>
+T ValueInterface<T>::Get(lua_State* pL, int index, bool validate)
+{
+	return *LuaInterface<T>::GetPtr(pL, index, validate);
+}
+
+template <typename T>
+void ValueInterface<T>::Push(lua_State* pL, T obj)
+{
+	LuaWrapper<T>* pWrap = LuaInterface<T>::CreateWrapperOnTop(pL);
+	pWrap->owns = true;
+	pWrap->pObj = new T(obj);
+}
+
 template<typename T>
-LuaWrapper<T>* GenericGet<T>::GetWrapper(lua_State* pL, int index, bool validate)
+LuaWrapper<T>* GenericGetPtr<T>::GetWrapper(lua_State* pL, int index, bool validate)
 {
 	if (validate)
 		Validate(pL, index);
@@ -60,13 +74,13 @@ LuaWrapper<T>* GenericGet<T>::GetWrapper(lua_State* pL, int index, bool validate
 }
 
 template <typename T>
-T* GenericGet<T>::GetPtr(lua_State* pL, int arg, bool check)
+T* GenericGetPtr<T>::GetPtr(lua_State* pL, int arg, bool check)
 {
 	return GetWrapper(pL, arg, check)->pObj;
 }
 
 template <typename T>
-void GenericGet<T>::Validate(lua_State* pL, int index)
+void GenericGetPtr<T>::Validate(lua_State* pL, int index)
 {
 	if (index < 0)
 	{
@@ -250,6 +264,18 @@ template<typename T>
 void GenericDispatch<T>::RegisterMemberSetter(lua_State* pL, const char* pName, lua_CFunction pFunc)
 {
 	GetSetterMap().insert(std::make_pair(std::string(pName), pFunc));
+}
+
+template<typename T>
+void GenericDispatch<T>::RegisterOperator(lua_State* pL, lua_CFunction pFunc, const char* pOp)
+{
+	LuaInterface<T>::Register(pL);
+
+	LuaInterface<T>::PushMetatable(pL);
+	lua_pushstring(pL, pOp);
+	lua_pushcfunction(pL, pFunc);
+	lua_rawset(pL, -3);
+	lua_pop(pL, 1);
 }
 
 }

@@ -92,6 +92,30 @@ public:
 	static int Call(lua_State* pL);
 };
 
+template <typename L, typename R, typename Ret>
+class ProxyClassOperatorAdd
+{
+public:
+	static void Register(lua_State* pL);
+	static int Call(lua_State* pL);
+};
+
+template <typename L, typename R, typename Ret>
+class ProxyClassOperatorSub
+{
+public:
+	static void Register(lua_State* pL);
+	static int Call(lua_State* pL);
+};
+
+template <typename L, typename R, typename Ret>
+class ProxyClassOperatorMul
+{
+public:
+	static void Register(lua_State* pL);
+	static int Call(lua_State* pL);
+};
+
 }
 
 #endif

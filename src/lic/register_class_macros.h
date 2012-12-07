@@ -65,4 +65,20 @@
 #define LIC_REG_CLASS_MEMBER_GETTER(T, name, type)																					\
 	static lic::StringRegistrant s_ ## T ## name ## Reg(lic::ProxyClassMemberGetter<T, type, &T::name>::Register, #name)
 
+#define LIC_REG_CLASS_OPERATOR_ADD(T, O, Ret)																			\
+	static lic::Registrant s_ ## T ## O ## OperatorAddReg(lic::ProxyClassOperatorAdd<T, O, Ret>::Register)
+
+#define LIC_REG_CLASS_OPERATOR_SUB(T, O, Ret)																			\
+	static lic::Registrant s_ ## T ## O ## OperatorSubReg(lic::ProxyClassOperatorSub<T, O, Ret>::Register)
+
+#define LIC_REG_CLASS_OPERATOR_MUL(T, O, Ret)																			\
+	static lic::Registrant s_ ## T ## O ## OperatorMulReg(lic::ProxyClassOperatorMul<T, O, Ret>::Register)
+
+#define LIC_REG_CLASS_OPERATOR_TOSTRING(T, Fn)																			\
+	static void Register ## T ## OperatorToString(lua_State* pL)														\
+	{																													\
+		lic::LuaInterface<T>::RegisterOperator(pL, &Fn, "__tostring");													\
+	}																													\
+	static lic::Registrant s_ ## T ## OperatorToStringReg(Register ## T ## OperatorToString)
+
 #endif

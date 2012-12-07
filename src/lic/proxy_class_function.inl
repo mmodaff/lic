@@ -108,6 +108,45 @@ int ProxyClassDelete<T>::Call(lua_State* pL)
 	return 0;
 }
 
+template <typename L, typename R, typename Ret>
+void ProxyClassOperatorAdd<L, R, Ret>::Register(lua_State* pL)
+{
+	LuaInterface<L>::RegisterOperator(pL, &Call, "__add");
+}
+
+template <typename L, typename R, typename Ret>
+int ProxyClassOperatorAdd<L, R, Ret>::Call(lua_State* pL)
+{
+	LuaInterface<Ret>::Push(pL, LuaInterface<L>::Get(pL, 1, true) + LuaInterface<R>::Get(pL, 2, true));
+	return 1;
+}
+
+template <typename L, typename R, typename Ret>
+void ProxyClassOperatorSub<L, R, Ret>::Register(lua_State* pL)
+{
+	LuaInterface<L>::RegisterOperator(pL, &Call, "__sub");
+}
+
+template <typename L, typename R, typename Ret>
+int ProxyClassOperatorSub<L, R, Ret>::Call(lua_State* pL)
+{
+	LuaInterface<Ret>::Push(pL, LuaInterface<L>::Get(pL, 1, true) - LuaInterface<R>::Get(pL, 2, true));
+	return 1;
+}
+
+template <typename L, typename R, typename Ret>
+void ProxyClassOperatorMul<L, R, Ret>::Register(lua_State* pL)
+{
+	LuaInterface<L>::RegisterOperator(pL, &Call, "__mul");
+}
+
+template <typename L, typename R, typename Ret>
+int ProxyClassOperatorMul<L, R, Ret>::Call(lua_State* pL)
+{
+	LuaInterface<Ret>::Push(pL, LuaInterface<L>::Get(pL, 1, true) * LuaInterface<R>::Get(pL, 2, true));
+	return 1;
+}
+
 }
 
 #endif
