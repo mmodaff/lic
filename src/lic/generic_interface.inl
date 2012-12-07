@@ -50,14 +50,8 @@ void Base<T>::PushRefIfObj(lua_State* pL, T& obj)
 	CreateWrapperOnTop(pL)->pObj = &obj;
 }
 
-template <typename T>
-T* Base<T>::GetPtr(lua_State* pL, int arg, bool check)
-{
-	return GetWrapper(pL, arg, check)->pObj;
-}
-
 template<typename T>
-LuaWrapper<T>* Base<T>::GetWrapper(lua_State* pL, int index, bool validate)
+LuaWrapper<T>* GenericGet<T>::GetWrapper(lua_State* pL, int index, bool validate)
 {
 	if (validate)
 		Validate(pL, index);
@@ -66,7 +60,13 @@ LuaWrapper<T>* Base<T>::GetWrapper(lua_State* pL, int index, bool validate)
 }
 
 template <typename T>
-void Base<T>::Validate(lua_State* pL, int index)
+T* GenericGet<T>::GetPtr(lua_State* pL, int arg, bool check)
+{
+	return GetWrapper(pL, arg, check)->pObj;
+}
+
+template <typename T>
+void GenericGet<T>::Validate(lua_State* pL, int index)
 {
 	if (index < 0)
 	{
@@ -78,7 +78,7 @@ void Base<T>::Validate(lua_State* pL, int index)
 		luaL_error(pL, "Invalid argument type");
 	}
 
-	PushMetatable(pL);
+	LuaInterface<T>::PushMetatable(pL);
 	lua_getmetatable(pL, index);
 	while(!lua_isnil(pL, -1))
 	{

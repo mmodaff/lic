@@ -25,9 +25,15 @@ public:
 	static int& GetRegIndex();
 	static void PushMetatable(lua_State* pL);
 	static LuaWrapper<T>* CreateWrapperOnTop(lua_State* pL);
-	static LuaWrapper<T>* GetWrapper(lua_State* pL, int arg, bool check);
 	static void PushRefIfObj(lua_State* pL, T& obj);
+};
+
+template <typename T>
+class GenericGet
+{
+public:
 	static T* GetPtr(lua_State* pL, int arg, bool check);
+	static LuaWrapper<T>* GetWrapper(lua_State* pL, int arg, bool check);
 	static void Validate(lua_State* pL, int arg);
 };
 
@@ -92,6 +98,7 @@ public:
 template <typename T>
 class GenericInterface :
 	public Base<T>,
+	public GenericGet<T>,
 	public GenericRegister<T>,
 	public GenericNotDerived,
 	public GenericDispatch<T>,
@@ -102,6 +109,7 @@ class GenericInterface :
 template <typename T, typename B>
 class GenericInterfaceDerived :
 	public Base<T>,
+	public GenericGet<T>,
 	public GenericRegister<T>,
 	public GenericDerived<B>,
 	public GenericDispatch<T>,
@@ -112,6 +120,7 @@ class GenericInterfaceDerived :
 template <typename T>
 class GenericInterfaceSingleton :
 	public Base<T>,
+	public GenericGet<T>,
 	public GenericRegister<T>,
 	public GenericNotDerived,
 	public GenericDispatch<T>,

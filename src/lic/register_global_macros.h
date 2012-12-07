@@ -18,6 +18,9 @@
 #define LIC_REG_GLOBAL_FUNC_VOID_1(name, a1)																\
 	static lic::StringRegistrant s_ ## name ## Register(lic::ProxyFunctionVoid1<a1, name>::Register, #name)
 
+#define LIC_REG_GLOBAL_FUNC_VOID_2(name, a1, a2)															\
+	static lic::StringRegistrant s_ ## name ## Register(lic::ProxyFunctionVoid2<a1, a2, name>::Register, #name)
+
 #define LIC_REG_GLOBAL_FUNC_RET_0(name, ret)																\
 	static lic::StringRegistrant s_ ## name ## Register(lic::ProxyFunctionRet0<ret, name>::Register, #name)
 	
